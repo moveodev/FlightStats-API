@@ -1,6 +1,6 @@
 <?php
 
-namespace Willemo\FlightStats\Api;
+namespace FairDigital\FlightStatsApi\Api;
 
 use DateTime;
 use Tightenco\Collect\Support\Collection;
@@ -36,14 +36,10 @@ class Schedules extends AbstractApi
      * @param  array $queryParams Query parameters to add to the request
      * @return array                 The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
-    public function getFlightByArrivalDate(
-        $carrier,
-        $flight,
-        DateTime $date,
-        array $queryParams = []
-    ) {
+    public function getFlightByArrivalDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    {
         $endpoint = sprintf(
             'flight/%s/%s/arriving/%s',
             $carrier,
@@ -65,14 +61,10 @@ class Schedules extends AbstractApi
      * @param  array $queryParams Query parameters to add to the request
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
-    public function getFlightByDepartureDate(
-        $carrier,
-        $flight,
-        DateTime $date,
-        array $queryParams = []
-    ) {
+    public function getFlightByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    {
         $endpoint = sprintf(
             'flight/%s/%s/departing/%s',
             $carrier,

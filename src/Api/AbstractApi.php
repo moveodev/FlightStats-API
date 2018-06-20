@@ -1,11 +1,11 @@
 <?php
 
-namespace Willemo\FlightStats\Api;
+namespace FairDigital\FlightStatsApi\Api;
 
 use DateTime;
 use DateTimeZone;
 use Tightenco\Collect\Support\Collection;
-use Willemo\FlightStats\FlexClient;
+use FairDigital\FlightStatsApi\FlexClient;
 
 abstract class AbstractApi implements ApiInterface
 {
@@ -48,7 +48,7 @@ abstract class AbstractApi implements ApiInterface
      * @param  array $queryParams The query parameters
      * @return array               The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     protected function sendRequest($endpoint, array $queryParams)
     {

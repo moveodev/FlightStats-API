@@ -7,15 +7,15 @@ PHP client for the FlightStats API.
 Use Composer to install this package:
 
 ```
-composer.phar install willemo/flightstats
+composer require fairdigital/flightstats-api
 ```
 
 ## Usage
 
-Create a new `Willemo\FlightStats\FlexClient` and use that to make requests to the FlightStats API:
+Create a new `FairDigital\FlightStatsApi\FlexClient` and use that to make requests to the FlightStats API:
 
 ```php
-$client = new Willemo\FlightStats\FlexClient([
+$client = new FairDigital\FlightStatsApi\FlexClient([
     'appId' => 'yourAppId',
     'appKey' => 'yourAppKey',
 ]);

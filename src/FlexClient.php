@@ -1,14 +1,14 @@
 <?php
 
-namespace Willemo\FlightStats;
+namespace FairDigital\FlightStatsApi;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use Willemo\FlightStats\Api\Airports;
-use Willemo\FlightStats\Exception\ClientException as FlexClientException;
-use Willemo\FlightStats\Api\FlightStatus;
-use Willemo\FlightStats\Api\Schedules;
+use FairDigital\FlightStatsApi\Api\Airports;
+use FairDigital\FlightStatsApi\Exception\ClientException as FlexClientException;
+use FairDigital\FlightStatsApi\Api\FlightStatus;
+use FairDigital\FlightStatsApi\Api\Schedules;
 use Psr\Http\Message\ResponseInterface;
 
 class FlexClient

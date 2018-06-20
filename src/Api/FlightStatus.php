@@ -1,6 +1,6 @@
 <?php
 
-namespace Willemo\FlightStats\Api;
+namespace FairDigital\FlightStatsApi\Api;
 
 use DateTime;
 use Tightenco\Collect\Support\Collection;
@@ -35,7 +35,7 @@ class FlightStatus extends AbstractApi
      * @param  array $queryParams Query parameters to add to the request
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getFlightStatusById($flightId, array $queryParams = []): Collection
     {
@@ -55,14 +55,10 @@ class FlightStatus extends AbstractApi
      * @param  array $queryParams Query parameters to add to the request
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
-    public function getFlightStatusByArrivalDate(
-        $carrier,
-        $flight,
-        DateTime $date,
-        array $queryParams = []
-    ): Collection {
+    public function getFlightStatusByArrivalDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    {
         $endpoint = sprintf(
             'flight/status/%s/%s/arr/%s',
             $carrier,
@@ -88,7 +84,7 @@ class FlightStatus extends AbstractApi
      * @param  array $queryParams Query parameters to add to the request
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getFlightStatusByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Willemo\FlightStats\Api;
+namespace FairDigital\FlightStatsApi\Api;
 
 interface ApiInterface
 {

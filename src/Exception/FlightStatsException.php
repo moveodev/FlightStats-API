@@ -1,6 +1,6 @@
 <?php
 
-namespace Willemo\FlightStats\Exception;
+namespace FairDigital\FlightStatsApi\Exception;
 
 class FlightStatsException extends \Exception
 {

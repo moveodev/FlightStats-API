@@ -1,6 +1,6 @@
 <?php
 
-namespace Willemo\FlightStats\Api;
+namespace FairDigital\FlightStatsApi\Api;
 
 
 use Tightenco\Collect\Support\Collection;
@@ -31,7 +31,7 @@ class Airports extends AbstractApi
     /**
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getActiveAirports(): Collection
     {
@@ -44,7 +44,7 @@ class Airports extends AbstractApi
      * @param $iataCode
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsByIataCode(string $iataCode): Collection
     {
@@ -57,7 +57,7 @@ class Airports extends AbstractApi
      * @param $icaoCode
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsByIcaoCode(string $icaoCode): Collection
     {
@@ -72,7 +72,7 @@ class Airports extends AbstractApi
      * @param string $radius
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Willemo\FlightStats\Exception\ClientException
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsWithinRadius(string $longitude, string $latitude, string $radius): Collection {
         $response = $this->sendRequest("withinRadius/{$longitude}/{$latitude}/{$radius}", []);

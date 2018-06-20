@@ -1,5 +1,5 @@
 {
-    "name": "willemo/flightstats",
+    "name": "fairdigital/flightstats-api",
     "description": "PHP client for the FlightStats API",
     "type": "library",
     "license": "MIT",
@@ -23,7 +23,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Willemo\\FlightStats\\": "src/"
+            "FairDigital\\FlightStatsApi\\": "src/"
         }
     }
 }
