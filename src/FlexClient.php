@@ -5,6 +5,7 @@ namespace Willemo\FlightStats;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use Willemo\FlightStats\Api\Airports;
 use Willemo\FlightStats\Exception\ClientException as FlexClientException;
 use Willemo\FlightStats\Api\FlightStatus;
 use Willemo\FlightStats\Api\Schedules;
@@ -92,10 +93,10 @@ class FlexClient
     /**
      * Send a request to the API.
      *
-     * @param  string $api         The API name
-     * @param  string $version     The API version
-     * @param  string $endpoint    The endpoint of the URI
-     * @param  array  $queryParams The query parameters
+     * @param  string $api The API name
+     * @param  string $version The API version
+     * @param  string $endpoint The endpoint of the URI
+     * @param  array $queryParams The query parameters
      * @return array               The response from the API
      */
     public function sendRequest(
@@ -142,10 +143,20 @@ class FlexClient
     }
 
     /**
+     * Get the Airports API
+     *
+     * @return Airports
+     */
+    public function airports()
+    {
+        return new Airports($this);
+    }
+
+    /**
      * Build the endpoint of the URI.
      *
-     * @param  string $api      The API name
-     * @param  string $version  The API version
+     * @param  string $api The API name
+     * @param  string $version The API version
      * @param  string $endpoint The endpoint to use
      * @return string The full endpoint string for this API endpoint
      */
