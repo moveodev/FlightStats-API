@@ -63,7 +63,7 @@ class Schedules extends AbstractApi
      * @param  integer $flight The flight number
      * @param  DateTime $date The departure date
      * @param  array $queryParams Query parameters to add to the request
-     * @return array                 The response from the API
+     * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Willemo\FlightStats\Exception\ClientException
      */
@@ -89,12 +89,12 @@ class Schedules extends AbstractApi
      * Parse the response from the API to a more uniform and thorough format.
      *
      * @param  array $response The response from the API
-     * @return array            The parsed response
+     * @return Collection The parsed response
      */
     protected function parseResponse(array $response): Collection
     {
         if (empty($response['scheduledFlights'])) {
-            return collect([]);
+            return new Collection([]);
         }
 
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
@@ -140,6 +140,6 @@ class Schedules extends AbstractApi
             $flights[] = $flight;
         }
 
-        return collect($flights);
+        return new Collection($flights);
     }
 }

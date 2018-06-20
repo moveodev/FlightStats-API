@@ -117,7 +117,7 @@ class FlightStatus extends AbstractApi
     protected function parseResponse(array $response): Collection
     {
         if (empty($response['flightStatuses'])) {
-            return collect([]);
+            return new Collection([]);
         }
 
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
@@ -145,6 +145,6 @@ class FlightStatus extends AbstractApi
             $flights[] = $flight;
         }
 
-        return collect($flights);
+        return new Collection($flights);
     }
 }

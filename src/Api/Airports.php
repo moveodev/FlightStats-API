@@ -89,9 +89,9 @@ class Airports extends AbstractApi
     protected function parseResponse(array $response): Collection
     {
         if (empty($response['airports'])) {
-            return collect([]);
+            return new Collection([]);
         }
 
-        return collect($response['airports']);
+        return new Collection($response['airports']);
     }
 }
