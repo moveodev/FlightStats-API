@@ -4,6 +4,7 @@ namespace Willemo\FlightStats\Api;
 
 use DateTime;
 use DateTimeZone;
+use Tightenco\Collect\Support\Collection;
 use Willemo\FlightStats\FlexClient;
 
 abstract class AbstractApi implements ApiInterface
@@ -42,10 +43,12 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Send the request through the FlexClient.
      *
-     * @param  string $endpoint    The endpoint to make the
+     * @param  string $endpoint The endpoint to make the
      *                             request to
-     * @param  array  $queryParams The query parameters
+     * @param  array $queryParams The query parameters
      * @return array               The response from the API
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
     protected function sendRequest($endpoint, array $queryParams)
     {
@@ -61,7 +64,7 @@ abstract class AbstractApi implements ApiInterface
      * Parse the airlines array into an associative array with the airline's
      * FS code as the key.
      *
-     * @param  array  $airlines The airlines from the response
+     * @param  array $airlines The airlines from the response
      * @return array            The associative array of airlines
      */
     protected function parseAirlines(array $airlines)
@@ -79,7 +82,7 @@ abstract class AbstractApi implements ApiInterface
      * Parse the airports array into an associative array with the airport's
      * FS code as the key.
      *
-     * @param  array  $airports The airports from the response
+     * @param  array $airports The airports from the response
      * @return array            The associative array of airports
      */
     protected function parseAirports(array $airports)
@@ -96,9 +99,9 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Change a date/time in a local time zone to UTC.
      *
-     * @param  string  $dateTimeString The local date/time as a string
-     * @param  string  $timeZone       The local time zone name
-     * @param  boolean $shouldFormat   Should the response be formatted ('c')
+     * @param  string $dateTimeString The local date/time as a string
+     * @param  string $timeZone The local time zone name
+     * @param  boolean $shouldFormat Should the response be formatted ('c')
      * @return DateTime|string         The date/time in UTC
      */
     protected function dateToUtc(
@@ -120,8 +123,8 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Parse the response from the API to a more uniform and thorough format.
      *
-     * @param  array  $response The response from the API
-     * @return array            The parsed response
+     * @param  array $response The response from the API
+     * @return Collection The parsed response
      */
-    abstract protected function parseResponse(array $response);
+    abstract protected function parseResponse(array $response): Collection;
 }

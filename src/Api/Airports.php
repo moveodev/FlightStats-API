@@ -3,6 +3,8 @@
 namespace Willemo\FlightStats\Api;
 
 
+use Tightenco\Collect\Support\Collection;
+
 class Airports extends AbstractApi
 {
 
@@ -27,9 +29,11 @@ class Airports extends AbstractApi
     }
 
     /**
-     * @return array
+     * @return Collection
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
-    public function getActiveAirports()
+    public function getActiveAirports(): Collection
     {
         $response = $this->sendRequest('/active', []);
 
@@ -38,22 +42,40 @@ class Airports extends AbstractApi
 
     /**
      * @param $iataCode
-     * @return array
+     * @return Collection
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
-    public function getAirportsByIataCode($iataCode)
+    public function getAirportsByIataCode(string $iataCode): Collection
     {
-        $response = $this->sendRequest('/iata/' . $iataCode, []);
+        $response = $this->sendRequest("iata/{$iataCode}", []);
 
         return $this->parseResponse($response);
     }
 
     /**
      * @param $icaoCode
-     * @return array
+     * @return Collection
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
-    public function getAirportsByIcaoCode($icaoCode)
+    public function getAirportsByIcaoCode(string $icaoCode): Collection
     {
-        $response = $this->sendRequest('/icao/' . $icaoCode, []);
+        $response = $this->sendRequest("icao/{$icaoCode}", []);
+
+        return $this->parseResponse($response);
+    }
+
+    /**
+     * @param string $longitude
+     * @param string $latitude
+     * @param string $radius
+     * @return Collection
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
+     */
+    public function getAirportsWithinRadius(string $longitude, string $latitude, string $radius): Collection {
+        $response = $this->sendRequest("withinRadius/{$longitude}/{$latitude}/{$radius}", []);
 
         return $this->parseResponse($response);
     }
@@ -62,10 +84,14 @@ class Airports extends AbstractApi
      * Parse the response from the API to a more uniform and thorough format.
      *
      * @param  array $response The response from the API
-     * @return array            The parsed response
+     * @return Collection The parsed response
      */
-    protected function parseResponse(array $response)
+    protected function parseResponse(array $response): Collection
     {
-        // TODO: Implement parseResponse() method.
+        if (empty($response['airports'])) {
+            return collect([]);
+        }
+
+        return collect($response['airports']);
     }
 }

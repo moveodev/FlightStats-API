@@ -7,14 +7,19 @@
         {
             "name": "Willem Oostendorp",
             "email": "willem@wioo.nl"
+        },
+        {
+            "name": "Aaron Florey",
+            "email": "aaron@fairdigital.com.au"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable" : true,
     "require": {
-        "php": ">=5.5",
+        "php": ">=7.0",
         "guzzlehttp/guzzle": "~6.0",
-        "symfony/options-resolver": "^3.3"
+        "symfony/options-resolver": "^3.3",
+        "tightenco/collect": "^5.6"
     },
     "autoload": {
         "psr-4": {

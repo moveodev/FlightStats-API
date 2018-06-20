@@ -3,6 +3,7 @@
 namespace Willemo\FlightStats\Api;
 
 use DateTime;
+use Tightenco\Collect\Support\Collection;
 
 class Schedules extends AbstractApi
 {
@@ -29,11 +30,13 @@ class Schedules extends AbstractApi
     /**
      * Get information about a scheduled flight arriving on the given date.
      *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
-     * @param  DateTime $date        The arrival date
-     * @param  array    $queryParams Query parameters to add to the request
+     * @param  string $carrier The carrier (airline) code
+     * @param  integer $flight The flight number
+     * @param  DateTime $date The arrival date
+     * @param  array $queryParams Query parameters to add to the request
      * @return array                 The response from the API
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
     public function getFlightByArrivalDate(
         $carrier,
@@ -56,11 +59,13 @@ class Schedules extends AbstractApi
     /**
      * Get information about a scheduled flight departing on the given date.
      *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
-     * @param  DateTime $date        The departure date
-     * @param  array    $queryParams Query parameters to add to the request
+     * @param  string $carrier The carrier (airline) code
+     * @param  integer $flight The flight number
+     * @param  DateTime $date The departure date
+     * @param  array $queryParams Query parameters to add to the request
      * @return array                 The response from the API
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
     public function getFlightByDepartureDate(
         $carrier,
@@ -83,13 +88,13 @@ class Schedules extends AbstractApi
     /**
      * Parse the response from the API to a more uniform and thorough format.
      *
-     * @param  array  $response The response from the API
+     * @param  array $response The response from the API
      * @return array            The parsed response
      */
-    protected function parseResponse(array $response)
+    protected function parseResponse(array $response): Collection
     {
         if (empty($response['scheduledFlights'])) {
-            return [];
+            return collect([]);
         }
 
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
@@ -135,6 +140,6 @@ class Schedules extends AbstractApi
             $flights[] = $flight;
         }
 
-        return $flights;
+        return collect($flights);
     }
 }

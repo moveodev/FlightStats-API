@@ -3,6 +3,7 @@
 namespace Willemo\FlightStats\Api;
 
 use DateTime;
+use Tightenco\Collect\Support\Collection;
 
 class FlightStatus extends AbstractApi
 {
@@ -29,12 +30,14 @@ class FlightStatus extends AbstractApi
     /**
      * Get the flight status from a flight associated with provided Flight ID.
      *
-     * @param  string $flightId    FlightStats' Flight ID number for the desired
+     * @param  string $flightId FlightStats' Flight ID number for the desired
      *                             flight
-     * @param  array  $queryParams Query parameters to add to the request
-     * @return array               The response from the API
+     * @param  array $queryParams Query parameters to add to the request
+     * @return Collection The response from the API
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
-    public function getFlightStatusById($flightId, array $queryParams = [])
+    public function getFlightStatusById($flightId, array $queryParams = []): Collection
     {
         $endpoint = 'flight/status/' . $flightId;
 
@@ -46,18 +49,20 @@ class FlightStatus extends AbstractApi
     /**
      * Get the flight status from a flight that's arriving on the given date.
      *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
-     * @param  DateTime $date        The arrival date
-     * @param  array    $queryParams Query parameters to add to the request
-     * @return array                 The response from the API
+     * @param  string $carrier The carrier (airline) code
+     * @param  integer $flight The flight number
+     * @param  DateTime $date The arrival date
+     * @param  array $queryParams Query parameters to add to the request
+     * @return Collection The response from the API
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
     public function getFlightStatusByArrivalDate(
         $carrier,
         $flight,
         DateTime $date,
         array $queryParams = []
-    ) {
+    ): Collection {
         $endpoint = sprintf(
             'flight/status/%s/%s/arr/%s',
             $carrier,
@@ -77,18 +82,16 @@ class FlightStatus extends AbstractApi
     /**
      * Get the flight status from a flight that's departing on the given date.
      *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
-     * @param  DateTime $date        The departure date
-     * @param  array    $queryParams Query parameters to add to the request
-     * @return array                 The response from the API
+     * @param  string $carrier The carrier (airline) code
+     * @param  integer $flight The flight number
+     * @param  DateTime $date The departure date
+     * @param  array $queryParams Query parameters to add to the request
+     * @return Collection
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws \Willemo\FlightStats\Exception\ClientException
      */
-    public function getFlightStatusByDepartureDate(
-        $carrier,
-        $flight,
-        DateTime $date,
-        array $queryParams = []
-    ) {
+    public function getFlightStatusByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    {
         $endpoint = sprintf(
             'flight/status/%s/%s/dep/%s',
             $carrier,
@@ -108,13 +111,13 @@ class FlightStatus extends AbstractApi
     /**
      * Parse the response from the API to a more uniform and thorough format.
      *
-     * @param  array  $response The response from the API
-     * @return array            The parsed response
+     * @param  array $response The response from the API
+     * @return Collection The parsed response
      */
-    protected function parseResponse(array $response)
+    protected function parseResponse(array $response): Collection
     {
         if (empty($response['flightStatuses'])) {
-            return [];
+            return collect([]);
         }
 
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
@@ -142,6 +145,6 @@ class FlightStatus extends AbstractApi
             $flights[] = $flight;
         }
 
-        return $flights;
+        return collect($flights);
     }
 }

@@ -98,6 +98,8 @@ class FlexClient
      * @param  string $endpoint The endpoint of the URI
      * @param  array $queryParams The query parameters
      * @return array               The response from the API
+     * @throws FlexClientException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sendRequest(
         $api,
