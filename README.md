@@ -1,5 +1,13 @@
 # FlightStats
 
+[![Latest Stable Version](https://poser.pugx.org/fairdigital/flightstats-api/version)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![Total Downloads](https://poser.pugx.org/fairdigital/flightstats-api/downloads)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![Latest Unstable Version](https://poser.pugx.org/fairdigital/flightstats-api/v/unstable)](//packagist.org/packages/fairdigital/flightstats-api)
+[![License](https://poser.pugx.org/fairdigital/flightstats-api/license)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![Monthly Downloads](https://poser.pugx.org/fairdigital/flightstats-api/d/monthly)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![Daily Downloads](https://poser.pugx.org/fairdigital/flightstats-api/d/daily)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![composer.lock available](https://poser.pugx.org/fairdigital/flightstats-api/composerlock)](https://packagist.org/packages/fairdigital/flightstats-api)
+
 PHP client for the FlightStats API.
 
 ## Installation
