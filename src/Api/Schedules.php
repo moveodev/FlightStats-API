@@ -78,6 +78,51 @@ class Schedules extends AbstractApi
     }
 
     /**
+     * @param string $origin
+     * @param string $destination
+     * @param DateTime $departure_date
+     * @return Collection
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getFlightsByRouteByDepartureDate(string $origin, string $destination, DateTime $departure_date): Collection
+    {
+
+        $endpoint = sprintf(
+            'from/%s/to/%s/departing/%s',
+            $origin,
+            $destination,
+            $departure_date->format('Y/n/j')
+        );
+
+        $response = $this->sendRequest($endpoint, ['codeType' => 'ICAO']);
+
+        return $this->parseResponse($response);
+    }
+    /**
+     * @param string $origin
+     * @param string $destination
+     * @param DateTime $departure_date
+     * @return Collection
+     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getFlightsByRouteByArrivalDate(string $origin, string $destination, DateTime $arrival_date): Collection
+    {
+
+        $endpoint = sprintf(
+            'from/%s/to/%s/arriving/%s',
+            $origin,
+            $destination,
+            $arrival_date->format('Y/n/j')
+        );
+
+        $response = $this->sendRequest($endpoint, ['codeType' => 'ICAO']);
+
+        return $this->parseResponse($response);
+    }
+
+    /**
      * Parse the response from the API to a more uniform and thorough format.
      *
      * @param  array $response The response from the API
