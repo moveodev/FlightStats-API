@@ -85,6 +85,44 @@ $client->flightStatus()->getFlightStatusByDepartureDate('AA', 100, new DateTime(
 ]);
 ```
 
+### Airport Status API
+
+[Airport Status API documentation](https://developer.flightstats.com/api-docs/flightstatus/v2/airport)
+
+#### getAirportStatusByArrivalDate
+
+Get the airport status from a flight that's arriving on the given date and hour of day.
+
+```php
+$client->airportStatus()->getAirportStatusByArrivalDate('ALA', new DateTime('2018-10-24'), (new DateTime())->format('H'), [
+    // Optional query parameters
+    'carrier' => 'KC',
+    'numHours' => 3,
+    'maxFlights' => 5,
+    'utc' => false,
+    'extendedOptions' => [
+        'includeDeltas',
+    ],
+]);
+```
+
+#### getAirportStatusByDepartureDate
+
+Get the airport status from a flight that's departing on the given date and hour of day.
+
+```php
+$client->airportStatus()->getAirportStatusByDepartureDate('ALA', new DateTime('2018-10-24'), (new DateTime())->format('H'), [
+    // Optional query parameters
+    'carrier' => 'KC',
+    'numHours' => 3,
+    'maxFlights' => 5,
+    'utc' => false,
+    'extendedOptions' => [
+        'includeDeltas',
+    ],
+]);
+```
+
 ### Schedules API
 
 [Schedules API documentation](https://developer.flightstats.com/api-docs/scheduledFlights/v1)
