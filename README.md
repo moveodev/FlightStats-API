@@ -98,7 +98,7 @@ $client->airportStatus()->getAirportStatusByArrivalDate('ALA', new DateTime('201
     // Optional query parameters
     'carrier' => 'KC',
     'numHours' => 3,
-    'maxFlights' => 5,
+    'maxFlights' => 3,
     'utc' => false,
     'extendedOptions' => [
         'includeDeltas',
@@ -115,7 +115,7 @@ $client->airportStatus()->getAirportStatusByDepartureDate('ALA', new DateTime('2
     // Optional query parameters
     'carrier' => 'KC',
     'numHours' => 3,
-    'maxFlights' => 5,
+    'maxFlights' => 3,
     'utc' => false,
     'extendedOptions' => [
         'includeDeltas',
