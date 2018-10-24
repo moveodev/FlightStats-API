@@ -1,6 +1,6 @@
 <?php
 
-namespace FairDigital\FlightStatsApi\Exception;
+namespace Gvozdb\FlightStatsApi\Exception;
 
 class FlightStatsException extends \Exception
 {

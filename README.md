@@ -1,12 +1,12 @@
 # FlightStats
 
-[![Latest Stable Version](https://poser.pugx.org/fairdigital/flightstats-api/version)](https://packagist.org/packages/fairdigital/flightstats-api)
-[![Total Downloads](https://poser.pugx.org/fairdigital/flightstats-api/downloads)](https://packagist.org/packages/fairdigital/flightstats-api)
-[![Latest Unstable Version](https://poser.pugx.org/fairdigital/flightstats-api/v/unstable)](//packagist.org/packages/fairdigital/flightstats-api)
-[![License](https://poser.pugx.org/fairdigital/flightstats-api/license)](https://packagist.org/packages/fairdigital/flightstats-api)
-[![Monthly Downloads](https://poser.pugx.org/fairdigital/flightstats-api/d/monthly)](https://packagist.org/packages/fairdigital/flightstats-api)
-[![Daily Downloads](https://poser.pugx.org/fairdigital/flightstats-api/d/daily)](https://packagist.org/packages/fairdigital/flightstats-api)
-[![composer.lock available](https://poser.pugx.org/fairdigital/flightstats-api/composerlock)](https://packagist.org/packages/fairdigital/flightstats-api)
+[![Latest Stable Version](https://poser.pugx.org/gvozdb/flightstats-api/version)](https://packagist.org/packages/gvozdb/flightstats-api)
+[![Total Downloads](https://poser.pugx.org/gvozdb/flightstats-api/downloads)](https://packagist.org/packages/gvozdb/flightstats-api)
+[![Latest Unstable Version](https://poser.pugx.org/gvozdb/flightstats-api/v/unstable)](//packagist.org/packages/gvozdb/flightstats-api)
+[![License](https://poser.pugx.org/gvozdb/flightstats-api/license)](https://packagist.org/packages/gvozdb/flightstats-api)
+[![Monthly Downloads](https://poser.pugx.org/gvozdb/flightstats-api/d/monthly)](https://packagist.org/packages/gvozdb/flightstats-api)
+[![Daily Downloads](https://poser.pugx.org/gvozdb/flightstats-api/d/daily)](https://packagist.org/packages/gvozdb/flightstats-api)
+[![composer.lock available](https://poser.pugx.org/gvozdb/flightstats-api/composerlock)](https://packagist.org/packages/gvozdb/flightstats-api)
 
 PHP client for the FlightStats API.
 
@@ -15,15 +15,15 @@ PHP client for the FlightStats API.
 Use Composer to install this package:
 
 ```
-composer require fairdigital/flightstats-api
+composer require gvozdb/flightstats-api
 ```
 
 ## Usage
 
-Create a new `FairDigital\FlightStatsApi\FlexClient` and use that to make requests to the FlightStats API:
+Create a new `Gvozdb\FlightStatsApi\FlexClient` and use that to make requests to the FlightStats API:
 
 ```php
-$client = new FairDigital\FlightStatsApi\FlexClient([
+$client = new Gvozdb\FlightStatsApi\FlexClient([
     'appId' => 'yourAppId',
     'appKey' => 'yourAppKey',
 ]);

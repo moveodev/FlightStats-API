@@ -1,17 +1,16 @@
 <?php
 
-namespace FairDigital\FlightStatsApi\Api;
+namespace Gvozdb\FlightStatsApi\Api;
 
 use DateTime;
 use DateTimeZone;
 use Tightenco\Collect\Support\Collection;
-use FairDigital\FlightStatsApi\FlexClient;
+use Gvozdb\FlightStatsApi\FlexClient;
 
 abstract class AbstractApi implements ApiInterface
 {
     /**
      * The FlexClient.
-     *
      * @var FlexClient
      */
     protected $flexClient;
@@ -28,14 +27,12 @@ abstract class AbstractApi implements ApiInterface
 
     /**
      * Get the API name to use in the URI.
-     *
      * @return string The API name
      */
     abstract public function getApiName();
 
     /**
      * Get the API version to use in the URI.
-     *
      * @return string The API version
      */
     abstract public function getApiVersion();
@@ -43,21 +40,17 @@ abstract class AbstractApi implements ApiInterface
     /**
      * Send the request through the FlexClient.
      *
-     * @param  string $endpoint The endpoint to make the
+     * @param  string $endpoint    The endpoint to make the
      *                             request to
-     * @param  array $queryParams The query parameters
+     * @param  array  $queryParams The query parameters
+     *
      * @return array               The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \FairDigital\FlightStatsApi\Exception\ClientException
+     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
      */
     protected function sendRequest($endpoint, array $queryParams)
     {
-        return $this->flexClient->sendRequest(
-            $this->getApiName(),
-            $this->getApiVersion(),
-            $endpoint,
-            $queryParams
-        );
+        return $this->flexClient->sendRequest($this->getApiName(), $this->getApiVersion(), $endpoint, $queryParams);
     }
 
     /**
@@ -65,6 +58,7 @@ abstract class AbstractApi implements ApiInterface
      * FS code as the key.
      *
      * @param  array $airlines The airlines from the response
+     *
      * @return array            The associative array of airlines
      */
     protected function parseAirlines(array $airlines)
@@ -83,6 +77,7 @@ abstract class AbstractApi implements ApiInterface
      * FS code as the key.
      *
      * @param  array $airports The airports from the response
+     *
      * @return array            The associative array of airports
      */
     protected function parseAirports(array $airports)
@@ -97,11 +92,31 @@ abstract class AbstractApi implements ApiInterface
     }
 
     /**
+     * Parse the equipments array into an associative array with the equipment's
+     * IATA code as the key.
+     *
+     * @param  array $equipments The equipments from the response
+     *
+     * @return array            The associative array of equipments
+     */
+    protected function parseEquipments(array $equipments)
+    {
+        $parsed = [];
+
+        foreach ($equipments as $equipment) {
+            $parsed[$equipment['iata']] = $equipment;
+        }
+
+        return $parsed;
+    }
+
+    /**
      * Change a date/time in a local time zone to UTC.
      *
-     * @param  string $dateTimeString The local date/time as a string
-     * @param  string $timeZone The local time zone name
-     * @param  boolean $shouldFormat Should the response be formatted ('c')
+     * @param  string  $dateTimeString The local date/time as a string
+     * @param  string  $timeZone       The local time zone name
+     * @param  boolean $shouldFormat   Should the response be formatted ('c')
+     *
      * @return DateTime|string         The date/time in UTC
      */
     protected function dateToUtc(
@@ -124,6 +139,7 @@ abstract class AbstractApi implements ApiInterface
      * Parse the response from the API to a more uniform and thorough format.
      *
      * @param  array $response The response from the API
+     *
      * @return Collection The parsed response
      */
     abstract protected function parseResponse(array $response): Collection;

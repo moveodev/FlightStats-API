@@ -1,29 +1,33 @@
 {
-    "name": "fairdigital/flightstats-api",
-    "description": "PHP client for the FlightStats API",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Willem Oostendorp",
-            "email": "willem@wioo.nl"
-        },
-        {
-            "name": "Aaron Florey",
-            "email": "aaron@fairdigital.com.au"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable" : true,
-    "require": {
-        "php": ">=7.0",
-        "guzzlehttp/guzzle": "~6.0",
-        "symfony/options-resolver": "^3.3",
-        "tightenco/collect": "^5.6"
+  "name": "gvozdb/flightstats-api",
+  "description": "PHP client for the FlightStats API",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Willem Oostendorp",
+      "email": "willem@wioo.nl"
     },
-    "autoload": {
-        "psr-4": {
-            "FairDigital\\FlightStatsApi\\": "src/"
-        }
+    {
+      "name": "Aaron Florey",
+      "email": "aaron@fairdigital.com.au"
+    },
+    {
+      "name": "Pavel Gvozdb",
+      "email": "pavelgvozdb@yandex.ru"
     }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": ">=7.1",
+    "guzzlehttp/guzzle": "~6.0",
+    "symfony/options-resolver": "^3.3",
+    "tightenco/collect": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gvozdb\\FlightStatsApi\\": "src/"
+    }
+  }
 }

@@ -5,7 +5,7 @@ namespace Gvozdb\FlightStatsApi\Api;
 use DateTime;
 use Tightenco\Collect\Support\Collection;
 
-class FlightStatus extends AbstractApi
+class AirportStatus extends AbstractApi
 {
     /**
      * Get the API name to use in the URI.
@@ -26,40 +26,18 @@ class FlightStatus extends AbstractApi
     }
 
     /**
-     * Get the flight status from a flight associated with provided Flight ID.
-     *
-     * @param  string $flightId    FlightStats' Flight ID number for the desired
-     *                             flight
-     * @param  array  $queryParams Query parameters to add to the request
-     *
-     * @return Collection The response from the API
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
-     */
-    public function getFlightStatusById($flightId, array $queryParams = []): Collection
-    {
-        $endpoint = 'flight/status/' . $flightId;
-
-        $response = $this->sendRequest($endpoint, $queryParams);
-
-        return $this->parseResponse($response);
-    }
-
-    /**
-     * Get the flight status from a flight that's arriving on the given date.
-     *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
+     * @param  string   $airport     The arrival airport code
      * @param  DateTime $date        The arrival date
+     * @param  integer  $hourOfDay   The Hour of day (0-23)
      * @param  array    $queryParams Query parameters to add to the request
      *
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
      */
-    public function getFlightStatusByArrivalDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    public function getAirportStatusByArrivalDate($airport, DateTime $date, $hourOfDay, array $queryParams = []): Collection
     {
-        $endpoint = sprintf('flight/status/%s/%s/arr/%s', $carrier, $flight, $date->format('Y/n/j'));
+        $endpoint = sprintf('airport/status/%s/arr/%s/%s', $airport, $date->format('Y/n/j'), $hourOfDay);
 
         if (!isset($queryParams['utc'])) {
             $queryParams['utc'] = $this->flexClient->getConfig('use_utc_time');
@@ -71,20 +49,18 @@ class FlightStatus extends AbstractApi
     }
 
     /**
-     * Get the flight status from a flight that's departing on the given date.
-     *
-     * @param  string   $carrier     The carrier (airline) code
-     * @param  integer  $flight      The flight number
-     * @param  DateTime $date        The departure date
+     * @param  string   $airport     The arrival airport code
+     * @param  DateTime $date        The arrival date
+     * @param  integer  $hourOfDay   The Hour of day (0-23)
      * @param  array    $queryParams Query parameters to add to the request
      *
-     * @return Collection
+     * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
      */
-    public function getFlightStatusByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
+    public function getAirportStatusByDepartureDate($airport, DateTime $date, $hourOfDay, array $queryParams = []): Collection
     {
-        $endpoint = sprintf('flight/status/%s/%s/dep/%s', $carrier, $flight, $date->format('Y/n/j'));
+        $endpoint = sprintf('airport/status/%s/dep/%s/%s', $airport, $date->format('Y/n/j'), $hourOfDay);
 
         if (!isset($queryParams['utc'])) {
             $queryParams['utc'] = $this->flexClient->getConfig('use_utc_time');
@@ -109,27 +85,37 @@ class FlightStatus extends AbstractApi
         }
 
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
-
         $airports = $this->parseAirports($response['appendix']['airports']);
+        $equipments = $this->parseEquipments($response['appendix']['equipments']);
 
         $flights = [];
 
         foreach ($response['flightStatuses'] as $flight) {
             // Set the carrier
             $carrier = $airlines[$flight['carrierFsCode']];
-
             $flight['carrier'] = $carrier;
+
+            // Set the equipment
+            $equipment = array();
+            if (!empty($flight['flightEquipment'])) {
+                if (isset($flight['flightEquipment']['scheduledEquipmentIataCode'])) {
+                    $equipment = $equipments[$flight['flightEquipment']['scheduledEquipmentIataCode']] ?: array();
+                }
+                if (isset($flight['flightEquipment']['actualEquipmentIataCode'])) {
+                    $equipment = $equipments[$flight['flightEquipment']['actualEquipmentIataCode']] ?: array();
+                }
+            }
+            $flight['equipment'] = $equipment;
 
             // Set the departure airport
             $departureAirport = $airports[$flight['departureAirportFsCode']];
-
             $flight['departureAirport'] = $departureAirport;
 
             // Set the arrival airport
             $arrivalAirport = $airports[$flight['arrivalAirportFsCode']];
-
             $flight['arrivalAirport'] = $arrivalAirport;
 
+            //
             $flights[] = $flight;
         }
 

@@ -1,28 +1,26 @@
 <?php
 
-namespace FairDigital\FlightStatsApi;
+namespace Gvozdb\FlightStatsApi;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use FairDigital\FlightStatsApi\Api\Airports;
-use FairDigital\FlightStatsApi\Exception\ClientException as FlexClientException;
-use FairDigital\FlightStatsApi\Api\FlightStatus;
-use FairDigital\FlightStatsApi\Api\Schedules;
+use Gvozdb\FlightStatsApi\Api\Airports;
+use Gvozdb\FlightStatsApi\Exception\ClientException as FlexClientException;
+use Gvozdb\FlightStatsApi\Api\FlightStatus;
+use Gvozdb\FlightStatsApi\Api\AirportStatus;
+use Gvozdb\FlightStatsApi\Api\Schedules;
 use Psr\Http\Message\ResponseInterface;
 
 class FlexClient
 {
     /**
      * The API client configuration.
-     *
      * @var array
      */
     protected $config;
-
     /**
      * The HTTP client.
-     *
      * @var Client
      */
     protected $client;
@@ -45,6 +43,7 @@ class FlexClient
      * Configure the OptionsResolver for the config.
      *
      * @param  OptionsResolver $resolver The OptionsResolver to configure
+     *
      * @return void
      */
     public function configureConfig(OptionsResolver $resolver)
@@ -65,7 +64,6 @@ class FlexClient
 
     /**
      * Get the configured HTTP client.
-     *
      * @return Client The configured HTTP client
      */
     public function getClient()
@@ -83,6 +81,7 @@ class FlexClient
      * Get a variable from the config.
      *
      * @param  string $name The name of the variable to get
+     *
      * @return mixed        The value of the config variable
      */
     public function getConfig($name)
@@ -93,10 +92,11 @@ class FlexClient
     /**
      * Send a request to the API.
      *
-     * @param  string $api The API name
-     * @param  string $version The API version
-     * @param  string $endpoint The endpoint of the URI
-     * @param  array $queryParams The query parameters
+     * @param  string $api         The API name
+     * @param  string $version     The API version
+     * @param  string $endpoint    The endpoint of the URI
+     * @param  array  $queryParams The query parameters
+     *
      * @return array               The response from the API
      * @throws FlexClientException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -113,7 +113,7 @@ class FlexClient
 
         try {
             $response = $this->getClient()->request('GET', $endpoint, [
-                'query' => $query
+                'query' => $query,
             ]);
 
             return $this->parseResponse($response);
@@ -126,7 +126,6 @@ class FlexClient
 
     /**
      * Get the FlightStatus API.
-     *
      * @return FlightStatus
      */
     public function flightStatus()
@@ -135,8 +134,16 @@ class FlexClient
     }
 
     /**
+     * Get the AirportStatus API.
+     * @return AirportStatus
+     */
+    public function airportStatus()
+    {
+        return new AirportStatus($this);
+    }
+
+    /**
      * Get the Schedules API.
-     *
      * @return Schedules
      */
     public function schedules()
@@ -146,7 +153,6 @@ class FlexClient
 
     /**
      * Get the Airports API
-     *
      * @return Airports
      */
     public function airports()
@@ -157,9 +163,10 @@ class FlexClient
     /**
      * Build the endpoint of the URI.
      *
-     * @param  string $api The API name
-     * @param  string $version The API version
+     * @param  string $api      The API name
+     * @param  string $version  The API version
      * @param  string $endpoint The endpoint to use
+     *
      * @return string The full endpoint string for this API endpoint
      */
     protected function buildEndpoint($api, $version, $endpoint)
@@ -178,6 +185,7 @@ class FlexClient
      * information.
      *
      * @param  array $queryParams The query parameters to use
+     *
      * @return array              The query parameters
      */
     protected function buildQuery(array $queryParams = [])
@@ -199,9 +207,7 @@ class FlexClient
             $extendedOptions = [$extendedOptions];
         }
 
-        if ($this->config['use_http_errors'] &&
-            !in_array('useHTTPErrors', $extendedOptions)
-        ) {
+        if ($this->config['use_http_errors'] && !in_array('useHTTPErrors', $extendedOptions)) {
             $extendedOptions[] = 'useHTTPErrors';
         }
 
@@ -214,6 +220,7 @@ class FlexClient
      * Parse the response from the API to an array
      *
      * @param  ResponseInterface $response The response from the API
+     *
      * @return array                       The response array
      */
     protected function parseResponse(ResponseInterface $response)
@@ -226,6 +233,7 @@ class FlexClient
      *
      * @param  ClientException $exception The exception that contains the
      *                                    response
+     *
      * @throws FlexClientException        The parsed error response from the API
      * @return void
      */
