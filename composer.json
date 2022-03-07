@@ -1,5 +1,5 @@
 {
-  "name": "gvozdb/flightstats-api",
+  "name": "moveodev/flightstats-api",
   "description": "PHP client for the FlightStats API",
   "type": "library",
   "license": "MIT",
@@ -15,6 +15,10 @@
     {
       "name": "Pavel Gvozdb",
       "email": "pavelgvozdb@yandex.ru"
+    }
+    {
+      "name": "Brian Jones",
+      "email": "dev@moveo.net"
     }
   ],
   "minimum-stability": "dev",
