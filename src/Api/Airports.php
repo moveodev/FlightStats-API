@@ -1,6 +1,6 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi\Api;
+namespace moveodev\FlightStatsApi\Api;
 
 use Tightenco\Collect\Support\Collection;
 
@@ -27,7 +27,7 @@ class Airports extends AbstractApi
     /**
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getActiveAirports(): Collection
     {
@@ -41,7 +41,7 @@ class Airports extends AbstractApi
      *
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsByIataCode(string $iataCode): Collection
     {
@@ -55,7 +55,7 @@ class Airports extends AbstractApi
      *
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsByIcaoCode(string $icaoCode): Collection
     {
@@ -71,7 +71,7 @@ class Airports extends AbstractApi
      *
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getAirportsWithinRadius(string $longitude, string $latitude, string $radius): Collection
     {

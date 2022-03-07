@@ -1,6 +1,6 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi\Api;
+namespace moveodev\FlightStatsApi\Api;
 
 use DateTime;
 use Tightenco\Collect\Support\Collection;
@@ -35,7 +35,7 @@ class Schedules extends AbstractApi
      *
      * @return array                 The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getFlightByArrivalDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
     {
@@ -56,7 +56,7 @@ class Schedules extends AbstractApi
      *
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getFlightByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
     {
@@ -73,7 +73,7 @@ class Schedules extends AbstractApi
      * @param DateTime $departure_date
      *
      * @return Collection
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFlightsByRouteByDepartureDate(string $origin, string $destination, DateTime $departure_date): Collection
@@ -92,7 +92,7 @@ class Schedules extends AbstractApi
      * @param DateTime $departure_date
      *
      * @return Collection
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFlightsByRouteByArrivalDate(string $origin, string $destination, DateTime $arrival_date): Collection

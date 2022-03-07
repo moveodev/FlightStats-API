@@ -15,15 +15,15 @@ PHP client for the FlightStats API.
 Use Composer to install this package:
 
 ```
-composer require gvozdb/flightstats-api
+composer require moveodev/flightstats-api
 ```
 
 ## Usage
 
-Create a new `Gvozdb\FlightStatsApi\FlexClient` and use that to make requests to the FlightStats API:
+Create a new `moveodev\FlightStatsApi\FlexClient` and use that to make requests to the FlightStats API:
 
 ```php
-$client = new Gvozdb\FlightStatsApi\FlexClient([
+$client = new moveodev\FlightStatsApi\FlexClient([
     'appId' => 'yourAppId',
     'appKey' => 'yourAppKey',
 ]);

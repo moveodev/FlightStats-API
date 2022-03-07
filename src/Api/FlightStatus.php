@@ -1,6 +1,6 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi\Api;
+namespace moveodev\FlightStatsApi\Api;
 
 use DateTime;
 use Tightenco\Collect\Support\Collection;
@@ -34,7 +34,7 @@ class FlightStatus extends AbstractApi
      *
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getFlightStatusById($flightId, array $queryParams = []): Collection
     {
@@ -55,7 +55,7 @@ class FlightStatus extends AbstractApi
      *
      * @return Collection The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getFlightStatusByArrivalDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
     {
@@ -80,7 +80,7 @@ class FlightStatus extends AbstractApi
      *
      * @return Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     public function getFlightStatusByDepartureDate($carrier, $flight, DateTime $date, array $queryParams = []): Collection
     {

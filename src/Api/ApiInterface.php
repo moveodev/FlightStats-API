@@ -1,6 +1,6 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi\Api;
+namespace moveodev\FlightStatsApi\Api;
 
 interface ApiInterface
 {

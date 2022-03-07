@@ -1,11 +1,11 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi\Api;
+namespace moveodev\FlightStatsApi\Api;
 
 use DateTime;
 use DateTimeZone;
 use Tightenco\Collect\Support\Collection;
-use Gvozdb\FlightStatsApi\FlexClient;
+use moveodev\FlightStatsApi\FlexClient;
 
 abstract class AbstractApi implements ApiInterface
 {
@@ -46,7 +46,7 @@ abstract class AbstractApi implements ApiInterface
      *
      * @return array               The response from the API
      * @throws \GuzzleHttp\Exception\GuzzleException
-     * @throws \Gvozdb\FlightStatsApi\Exception\ClientException
+     * @throws \moveodev\FlightStatsApi\Exception\ClientException
      */
     protected function sendRequest($endpoint, array $queryParams)
     {

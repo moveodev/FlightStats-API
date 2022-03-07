@@ -1,15 +1,15 @@
 <?php
 
-namespace Gvozdb\FlightStatsApi;
+namespace moveodev\FlightStatsApi;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use Gvozdb\FlightStatsApi\Api\Airports;
-use Gvozdb\FlightStatsApi\Exception\ClientException as FlexClientException;
-use Gvozdb\FlightStatsApi\Api\FlightStatus;
-use Gvozdb\FlightStatsApi\Api\AirportStatus;
-use Gvozdb\FlightStatsApi\Api\Schedules;
+use moveodev\FlightStatsApi\Api\Airports;
+use moveodev\FlightStatsApi\Exception\ClientException as FlexClientException;
+use moveodev\FlightStatsApi\Api\FlightStatus;
+use moveodev\FlightStatsApi\Api\AirportStatus;
+use moveodev\FlightStatsApi\Api\Schedules;
 use Psr\Http\Message\ResponseInterface;
 
 class FlexClient
