@@ -4,6 +4,7 @@ namespace moveodev\FlightStatsApi\Api;
 
 
 use DateTime;
+use Tightenco\Collect\Support\Collection;
 
 class FlightTrack extends AbstractApi
 {
@@ -35,7 +36,7 @@ class FlightTrack extends AbstractApi
      * @param array $queryParams Query parameters to add to the request
      * @return array               The response from the API
      */
-    public function trackFlightById($flightId, array $queryParams = [])
+    public function trackFlightById($flightId, array $queryParams = []): Collection
     {
         $endpoint = 'flight/track/' . $flightId;
         $response = $this->sendRequest($endpoint, $queryParams);
@@ -56,7 +57,7 @@ class FlightTrack extends AbstractApi
         $flight,
         DateTime $date,
         array $queryParams = []
-    )
+    ): Collection
     {
         $endpoint = sprintf(
             'flight/tracks/%s/%s/arr/%s',
@@ -85,7 +86,7 @@ class FlightTrack extends AbstractApi
         $flight,
         DateTime $date,
         array $queryParams = []
-    )
+    ): Collection
     {
         $endpoint = sprintf(
             'flight/tracks/%s/%s/dep/%s',
@@ -106,10 +107,10 @@ class FlightTrack extends AbstractApi
      * @param array $response The response from the API
      * @return array            The parsed response
      */
-    protected function parseResponse(array $response)
+    protected function parseResponse(array $response): Collection
     {
         if (empty($response['flightTracks'])) {
-            return [];
+            return Collection([]);
         }
         $airlines = $this->parseAirlines($response['appendix']['airlines']);
         $airports = $this->parseAirports($response['appendix']['airports']);
@@ -126,6 +127,6 @@ class FlightTrack extends AbstractApi
             $flight['arrivalAirport'] = $arrivalAirport;
             $flights[] = $flight;
         }
-        return $flights;
+        return Collection($flights);
     }
 }
