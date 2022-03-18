@@ -5,7 +5,7 @@ namespace moveodev\FlightStatsApi\Api;
 
 use DateTime;
 
-class TrackStatus extends AbstractApi
+class FlightTrack extends AbstractApi
 {
     /**
      * Get the API name to use in the URI.

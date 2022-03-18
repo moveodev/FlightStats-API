@@ -8,6 +8,7 @@ use GuzzleHttp\Exception\ClientException;
 use moveodev\FlightStatsApi\Api\Airports;
 use moveodev\FlightStatsApi\Exception\ClientException as FlexClientException;
 use moveodev\FlightStatsApi\Api\FlightStatus;
+use moveodev\FlightStatsApi\Api\FlightTrack;
 use moveodev\FlightStatsApi\Api\AirportStatus;
 use moveodev\FlightStatsApi\Api\Schedules;
 use Psr\Http\Message\ResponseInterface;
@@ -158,6 +159,15 @@ class FlexClient
     public function airports()
     {
         return new Airports($this);
+    }
+
+    /**
+     * Get the FlightTrack API.
+     * @return FlightTrack
+     */
+    public function flightTrack()
+    {
+        return new FlightTrack($this);
     }
 
     /**
