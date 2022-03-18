@@ -127,6 +127,6 @@ class FlightTrack extends AbstractApi
             $flight['arrivalAirport'] = $arrivalAirport;
             $flights[] = $flight;
         }
-        return Collection($flights);
+        return new Collection($flights);
     }
 }
