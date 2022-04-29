@@ -31,7 +31,7 @@ class Airports extends AbstractApi
      */
     public function getActiveAirports(): Collection
     {
-        $response = $this->sendRequest('/active', []);
+        $response = $this->sendRequest('active', []);
 
         return $this->parseResponse($response);
     }
