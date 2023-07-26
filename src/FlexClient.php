@@ -2,6 +2,7 @@
 
 namespace moveodev\FlightStatsApi;
 
+use moveodev\FlightStatsApi\Api\Airlines;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
@@ -159,6 +160,15 @@ class FlexClient
     public function airports()
     {
         return new Airports($this);
+    }
+
+    /**
+     * Get the Airlines API
+     * @return Airlines
+     */
+    public function Airlines()
+    {
+        return new Airlines($this);
     }
 
     /**
