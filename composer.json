@@ -27,7 +27,7 @@
     "php": ">=7.1",
     "guzzlehttp/guzzle": "^7.8.1",
     "symfony/options-resolver": "^3.3",
-    "tightenco/collect": "^5.6"
+    "illuminate/collections": "^11.7"
   },
   "autoload": {
     "psr-4": {

@@ -4,7 +4,7 @@ namespace moveodev\FlightStatsApi\Api;
 
 
 use DateTime;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 
 class FlightTrack extends AbstractApi
 {

@@ -4,7 +4,7 @@ namespace moveodev\FlightStatsApi\Api;
 
 use DateTime;
 use DateTimeZone;
-use Tightenco\Collect\Support\Collection;
+use Illuminate\Support\Collection;
 use moveodev\FlightStatsApi\FlexClient;
 
 abstract class AbstractApi implements ApiInterface
