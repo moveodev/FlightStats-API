@@ -26,8 +26,8 @@
   "require": {
     "php": ">=7.1",
     "guzzlehttp/guzzle": "^7.8.1",
-    "symfony/options-resolver": "^3.3",
-    "illuminate/collections": "10.48.10"
+    "symfony/options-resolver": "^3.4.47",
+    "illuminate/collections": "^11.8"
   },
   "autoload": {
     "psr-4": {
